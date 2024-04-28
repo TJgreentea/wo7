@@ -1,28 +1,19 @@
+// main-1-1.cpp
+#include "Appliance.h"
 #include <iostream>
-#include "Appliance.h" // Include the header file for the appliance class
 
 int main() {
-    // Create an instance of the appliance class using the default constructor
-    appliance myAppliance;
-    
-    // Display the initial state and power rating of the appliance
-    std::cout << "Initial appliance state: " << (myAppliance.get_ison() ? "On" : "Off") << "\n";
-    std::cout << "Initial power rating: " << myAppliance.get_powerRating() << " watts\n";
+    Appliance myAppliance;
+    myAppliance.set_powerRating(100);
 
-    // Set the power rating to 1500 watts and display the change
-    myAppliance.set_powerRating(1500);
-    std::cout << "Power rating set to: " << myAppliance.get_powerRating() << " watts\n";
+    std::cout << "Power Rating: " << myAppliance.get_powerRating() << std::endl;
+    std::cout << "Is on: " << std::boolalpha << myAppliance.get_isOn() << std::endl;
 
-    // Turn the appliance on and display the state
-    myAppliance.turnon();
-    std::cout << "Appliance state: " << (myAppliance.get_ison() ? "On" : "Off") << "\n";
+    myAppliance.turnOn();
+    std::cout << "Is on after turning on: " << myAppliance.get_isOn() << std::endl;
 
-    // Display the power consumption
-    std::cout << "Power consumption: " << myAppliance.getpowerconsumption() << " watts\n";
+    myAppliance.turnOff();
+    std::cout << "Is on after turning off: " << myAppliance.get_isOn() << std::endl;
 
-    // Turn the appliance off and display the state
-    myAppliance.turnoff();
-    std::cout << "Appliance state: " << (myAppliance.get_ison() ? "On" : "Off") << "\n";
-
-    return 0; // End of program
+    return 0;
 }

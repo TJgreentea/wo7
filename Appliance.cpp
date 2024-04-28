@@ -1,21 +1,56 @@
-#include"Appliance.h"
-appliance::appliance():powerRating(0),ison(false){}
-appliance::appliance(int powerRating):powerRating(powerRating),ison(false){}
-void appliance::turnon(){ison=true;}
-void appliance::turnoff(){ison=false;}
-int appliance::get_powerRating() const { return powerRating; }
-// Getter method implementation to return the power rating
+#include "Appliance.h"
+#include <iostream>
 
-void appliance::set_powerRating(int rating) { powerRating = rating; }
-// Setter method implementation to set a new power rating
+Appliance::Appliance() : powerRating(0), isOn(false) {}
 
-bool appliance::get_ison() const { return ison; }
-// Getter method implementation to check if the appliance is currently on
+Appliance::Appliance(int PowerRating) : powerRating(PowerRating), isOn(false) {}
 
-double appliance::getpowerconsumption() const{
-    if (ison) {
-        return powerRating; // Return the power rating if the appliance is on
-    } else {
-        return 0; // Return 0 if the appliance is off
-    }
+int Appliance::get_powerRating() const {
+    return powerRating;
 }
+
+void Appliance::set_powerRating(int powerRating) {
+    this->powerRating = powerRating;
+}
+
+bool Appliance::get_isOn() const {
+    return isOn;
+}
+
+void Appliance::turnOn() {
+    isOn = true;
+}
+
+void Appliance::turnOff() {
+    isOn = false;
+}
+Fridge::Fridge():Appliance(),volume(0){}
+Fridge::Fridge(int powerRating, double volume):Appliance(powerRating), volume(volume) {}
+void Fridge::setVolume(double volume) {
+    this->volume = volume;
+}
+
+double Fridge::getVolume() const {
+    return volume;
+}
+double Fridge::getPowerConsumption() const {
+    // Implement the formula to calculate power consumption.
+    return get_powerRating() * 24 * (volume / 100);
+}
+ TV::TV() : Appliance(), screenSize(0) {}
+
+TV::TV(int powerRating, double screenSize) : Appliance(powerRating), screenSize(screenSize) {}
+
+void TV::setScreenSize(double screenSize) {
+    this->screenSize = screenSize;
+}
+
+double TV::getScreenSize() const {
+    return screenSize;
+}
+
+double TV::getPowerConsumption() const {
+    // Implement the formula to calculate power consumption for TV.
+    return get_powerRating() * (screenSize / 10);
+}
+
